@@ -1,0 +1,23 @@
+{
+    "name": "test_assesment",
+    "version": "1.0.0",
+    "description": "Ornikar QA Challenge",
+    "main": "index.js",
+    "scripts": {
+        "test": "tsc && nightwatch"
+    },
+    "author": "Chicioreanu Ana Maria",
+    "devDependencies": {
+        "@nightwatch/apitesting": "^3.1.4",
+        "@swc/core": "^1.4.2",
+        "@types/supertest": "^6.0.2",
+        "nightwatch": "^3.4.1",
+        "supertest": "^7.0.0",
+        "ts-node": "^10.9.2",
+        "typescript": "^5.3.3"
+    },
+    "dependencies": {
+        "@types/axios": "^0.14.0",
+        "axios": "^1.7.4"
+    }
+}
