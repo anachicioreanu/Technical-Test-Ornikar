@@ -31,4 +31,5 @@ jobs:
     - name: Run lint
       run: npm run lint
 
-    - run: npm test
+    - name: Chrome tests
+      run: npm run test:chrome:headless
