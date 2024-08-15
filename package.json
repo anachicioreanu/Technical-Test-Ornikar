@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "tsc && nightwatch",
+    "test:api": "nightwatch --tag api",
     "test:chrome:headless": "tsc && nightwatch --env chrome:headless",
     "test:firefox:headless": "tsc && nightwatch --env firefox:headless",
     "test:safari:headless": "tsc && nightwatch --env safari:headless",
