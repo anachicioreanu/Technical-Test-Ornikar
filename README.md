@@ -75,6 +75,14 @@ Automatically fix code formatting issues:
 
 `npm run prettier:fix`
 
+#
+
+Tags
+
+Running API related tests 
+
+`npm run test:api'
+
 ## Test Reports
 
 Test reports are automatically generated in the `tests_output` folder after running tests locally.
