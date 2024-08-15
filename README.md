@@ -2,13 +2,13 @@
 
 ## Overview
 
-This project uses Nightwatch.js and TypeScript to perform automated browser and API testing.
+This project leverages **Nightwatch.js** and **TypeScript** for automated browser and API testing.
 
 ## Prerequisites
 
-Ensure you have the following installed:
+Make sure the following are installed:
 
-- [Node.js](https://nodejs.org/en/download/) (version used: v20.11.0)
+- [Node.js](https://nodejs.org/en/download/) (version used: v20.11.0+)
 - [npm](https://www.npmjs.com/get-npm) (version used: 10.2.4)
 
 ## Getting Started
@@ -23,55 +23,70 @@ Clone the repository using the following command:
 
 ## 2. Install Dependencies
 
-Install the project dependencies using npm:
+Navigate to the project directory and install the required dependencies:
 
 `npm install`
 
 ## 3. Configuration Files
 
 `nightwatch.conf.ts`: Configuration for Nightwatch.js
+
 `tsconfig.json`: TypeScript configuration file
 
-You may need to adjust the settings according to your test environment, such as browser drivers, test environments, and more.
 
-## 4. Run Tests
+## 4. Running Tests
 
 To run the tests, use the following npm scripts:
 
-#
-
-Running the tests in chrome browser
+#### Run Tests Locally (Chrome)
 
 `npm test`
 
-#
+#### Run Tests in Headless Mode
 
-Running the tests in headless chrome browser
+Headless mode is available for Chrome, Firefox, and Safari:
 
-`npm run test:headless`
+- Chrome: `npm run test:chrome:headless`
+- Firefox: `npm run test:firefox:headless`
+- Safari: `npm run test:safari:headless`
 
-## Scripts available
 
-Checking the quality of the code
+## 4. Available Scripts
+
+Linting
+
+Run the linter to check for code issues:
 
 `npm run lint`
 
 #
 
-Checking for formatting errors:
+Prettier
+
+Check code formatting:
 
 `npm run prettier`
 
 #
 
-Fixing formatting in all files:
+Fix Formatting
+
+Automatically fix code formatting issues:
 
 `npm run prettier:fix`
 
-## Test Result Reports
+## Test Reports
 
-Test report files are automatically generated in the `tests_output` folder, which will be created when running the tests.
+Test reports are automatically generated in the `tests_output` folder after running tests locally.
 
 ![alt text](docs/report.png)
 
 Screenshots can be found in the `screens` folder.
+
+### CI Configuration
+
+On every push and pull request to the main branch, a [Github actions pipeline](https://github.com/anachicioreanu/Technical-Test-Ornikar/blob/main/.github/workflows/nightwatch.yml) is triggered. The pipeline runs tests across Chrome, Firefox, and Safari, generating reports that are stored as artifacts. ([Here is an example of the artifacts generated.](https://github.com/anachicioreanu/Technical-Test-Ornikar/actions/runs/10410147371/artifacts/1817445047)).
+
+<img width="643" alt="Screenshot 2024-08-15 at 23 44 45" src="https://github.com/user-attachments/assets/7168dec4-ad47-4fa3-942b-80a753e3ba7d">
+
+
