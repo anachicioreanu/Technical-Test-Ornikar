@@ -59,20 +59,22 @@ module.exports = {
       desiredCapabilities: {
         browserName: "chrome",
         chromeOptions: {
-          args: [
-            "--disable-search-engine-choice-screen",
-            "--start-fullscreen",
-            "--headless",
-          ],
+          args: ["--disable-search-engine-choice-screen", "--start-fullscreen"],
         },
       },
-
       webdriver: {
         start_process: true,
         server_path: "",
       },
     },
-
+    "chrome:headless": {
+      desiredCapabilities: {
+        browserName: "chrome",
+        chromeOptions: {
+          args: ["--headless", "--disable-gpu", "--no-sandbox"],
+        },
+      },
+    },
     firefox: {
       desiredCapabilities: {
         browserName: "firefox",

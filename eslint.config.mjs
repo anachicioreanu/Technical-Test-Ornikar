@@ -1,7 +1,7 @@
 import globals from "globals";
 import pluginJs from "@eslint/js";
 import tseslint from "typescript-eslint";
-import tsParser from "@typescript-eslint/parser"
+import tsParser from "@typescript-eslint/parser";
 import eslintConfigPrettier from "eslint-config-prettier";
 
 export default [
@@ -37,5 +37,5 @@ export default [
     },
   },
   eslintConfigPrettier,
-  { ignores: ["**/distrib/", "**/nightwatch/types/*.d.ts"]}
+  { ignores: ["**/distrib/", "**/nightwatch/types/*.d.ts"] },
 ];
