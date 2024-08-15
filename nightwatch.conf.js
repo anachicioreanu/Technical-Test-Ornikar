@@ -15,29 +15,29 @@
 module.exports = {
   // An array of folders (excluding subfolders) where your tests are located;
   // if this is not specified, the test source must be passed as the second argument to the test runner.
-  src_folders: ['nightwatch/tests'],
+  src_folders: ["nightwatch/tests"],
 
   // See https://nightwatchjs.org/guide/concepts/page-object-model.html
-  page_objects_path: ['nightwatch/page-objects'],
+  page_objects_path: ["nightwatch/page-objects"],
 
   // See https://nightwatchjs.org/guide/extending-nightwatch/custom-assertions.html
-  custom_assertions_path: '',
+  custom_assertions_path: "",
 
   // See https://nightwatchjs.org/guide/extending-nightwatch/plugin-api.html
   plugins: [],
 
   // See https://nightwatchjs.org/guide/#external-globals
-  globals_path: '',
+  globals_path: "",
 
   webdriver: {},
 
   test_settings: {
     default: {
       disable_error_log: true,
-      launch_url: 'https://nightwatchjs.org',
+      launch_url: "https://nightwatchjs.org",
       screenshots: {
         enabled: true,
-        path: 'screens',
+        path: "screens",
         on_failure: true,
       },
       api: {
@@ -50,33 +50,35 @@ module.exports = {
         },
         desiredCapabilities: {
           // Desired capabilities for API tests (not using a browser)
-          browserName: 'chrome', // This will be ignored for API tests
+          browserName: "chrome", // This will be ignored for API tests
           chromeOptions: {
-            args: ['--headless'], // Optional: headless mode
+            args: ["--headless"], // Optional: headless mode
           },
         },
       },
       desiredCapabilities: {
-        browserName: 'chrome',
+        browserName: "chrome",
         chromeOptions: {
-          args : [
-          '--disable-search-engine-choice-screen',
-          '--start-fullscreen']
-        }
+          args: [
+            "--disable-search-engine-choice-screen",
+            "--start-fullscreen",
+            "--headless",
+          ],
+        },
       },
 
       webdriver: {
         start_process: true,
-        server_path: '',
+        server_path: "",
       },
     },
 
     firefox: {
       desiredCapabilities: {
-        browserName: 'firefox',
+        browserName: "firefox",
         alwaysMatch: {
           acceptInsecureCerts: true,
-          'moz:firefoxOptions': {
+          "moz:firefoxOptions": {
             args: [
               // '-headless',
               // '-verbose'
@@ -86,7 +88,7 @@ module.exports = {
       },
       webdriver: {
         start_process: true,
-        server_path: '',
+        server_path: "",
         cli_args: [
           // very verbose geckodriver logs
           // '-vv'
@@ -96,8 +98,8 @@ module.exports = {
 
     chrome: {
       desiredCapabilities: {
-        browserName: 'chrome',
-        'goog:chromeOptions': {
+        browserName: "chrome",
+        "goog:chromeOptions": {
           // More info on Chromedriver: https://sites.google.com/a/chromium.org/chromedriver/
           //
           // w3c:false tells Chromedriver to run using the legacy JSONWire protocol (not required in Chrome 78)
@@ -115,7 +117,7 @@ module.exports = {
 
       webdriver: {
         start_process: true,
-        server_path: '',
+        server_path: "",
         cli_args: [
           // --verbose
         ],
@@ -124,8 +126,8 @@ module.exports = {
 
     edge: {
       desiredCapabilities: {
-        browserName: 'MicrosoftEdge',
-        'ms:edgeOptions': {
+        browserName: "MicrosoftEdge",
+        "ms:edgeOptions": {
           w3c: true,
           // More info on EdgeDriver: https://docs.microsoft.com/en-us/microsoft-edge/webdriver-chromium/capabilities-edge-options
           args: [
@@ -138,7 +140,7 @@ module.exports = {
         start_process: true,
         // Download msedgedriver from https://docs.microsoft.com/en-us/microsoft-edge/webdriver-chromium/
         //  and set the location below:
-        server_path: '',
+        server_path: "",
         cli_args: [
           // --verbose
         ],
@@ -151,18 +153,18 @@ module.exports = {
     // It uses the bundled examples inside the nightwatch examples folder; feel free |
     // to adapt this to your own project needs                                       |
     //////////////////////////////////////////////////////////////////////////////////
-    'cucumber-js': {
-      src_folders: ['examples/cucumber-js/features/step_definitions'],
+    "cucumber-js": {
+      src_folders: ["examples/cucumber-js/features/step_definitions"],
 
       test_runner: {
         // set cucumber as the runner
-        type: 'cucumber',
+        type: "cucumber",
 
         // define cucumber specific options
         options: {
           //set the feature path
           feature_path:
-            'node_modules/nightwatch/examples/cucumber-js/*/*.feature',
+            "node_modules/nightwatch/examples/cucumber-js/*/*.feature",
 
           // start the webdriver session automatically (enabled by default)
           // auto_start_session: true
@@ -183,15 +185,15 @@ module.exports = {
     //////////////////////////////////////////////////////////////////////////////////
     browserstack: {
       selenium: {
-        host: 'hub-cloud.browserstack.com',
+        host: "hub-cloud.browserstack.com",
         port: 443,
       },
       // More info on configuring capabilities can be found on:
       // https://www.browserstack.com/automate/capabilities?tag=selenium-4
       desiredCapabilities: {
-        'bstack:options': {
-          userName: '${BROWSERSTACK_USER}',
-          accessKey: '${BROWSERSTACK_KEY}',
+        "bstack:options": {
+          userName: "${BROWSERSTACK_USER}",
+          accessKey: "${BROWSERSTACK_KEY}",
         },
       },
 
@@ -206,56 +208,56 @@ module.exports = {
       },
     },
 
-    'browserstack.local': {
-      extends: 'browserstack',
+    "browserstack.local": {
+      extends: "browserstack",
       desiredCapabilities: {
-        'browserstack.local': true,
+        "browserstack.local": true,
       },
     },
 
-    'browserstack.chrome': {
-      extends: 'browserstack',
+    "browserstack.chrome": {
+      extends: "browserstack",
       desiredCapabilities: {
-        browserName: 'chrome',
+        browserName: "chrome",
         chromeOptions: {
           w3c: true,
         },
       },
     },
 
-    'browserstack.firefox': {
-      extends: 'browserstack',
+    "browserstack.firefox": {
+      extends: "browserstack",
       desiredCapabilities: {
-        browserName: 'firefox',
+        browserName: "firefox",
       },
     },
 
-    'browserstack.ie': {
-      extends: 'browserstack',
+    "browserstack.ie": {
+      extends: "browserstack",
       desiredCapabilities: {
-        browserName: 'internet explorer',
-        browserVersion: '11.0',
+        browserName: "internet explorer",
+        browserVersion: "11.0",
       },
     },
 
-    'browserstack.safari': {
-      extends: 'browserstack',
+    "browserstack.safari": {
+      extends: "browserstack",
       desiredCapabilities: {
-        browserName: 'safari',
+        browserName: "safari",
       },
     },
 
-    'browserstack.local_chrome': {
-      extends: 'browserstack.local',
+    "browserstack.local_chrome": {
+      extends: "browserstack.local",
       desiredCapabilities: {
-        browserName: 'chrome',
+        browserName: "chrome",
       },
     },
 
-    'browserstack.local_firefox': {
-      extends: 'browserstack.local',
+    "browserstack.local_firefox": {
+      extends: "browserstack.local",
       desiredCapabilities: {
-        browserName: 'firefox',
+        browserName: "firefox",
       },
     },
     //////////////////////////////////////////////////////////////////////////////////
@@ -268,8 +270,8 @@ module.exports = {
       selenium: {
         start_process: true,
         port: 4444,
-        server_path: '', // Leave empty if @nightwatch/selenium-server is installed
-        command: 'standalone', // Selenium 4 only
+        server_path: "", // Leave empty if @nightwatch/selenium-server is installed
+        command: "standalone", // Selenium 4 only
         cli_args: {
           //'webdriver.gecko.driver': '',
           //'webdriver.chrome.driver': ''
@@ -277,25 +279,25 @@ module.exports = {
       },
       webdriver: {
         start_process: false,
-        default_path_prefix: '/wd/hub',
+        default_path_prefix: "/wd/hub",
       },
     },
 
-    'selenium.chrome': {
-      extends: 'selenium_server',
+    "selenium.chrome": {
+      extends: "selenium_server",
       desiredCapabilities: {
-        browserName: 'chrome',
+        browserName: "chrome",
         chromeOptions: {
           w3c: true,
         },
       },
     },
 
-    'selenium.firefox': {
-      extends: 'selenium_server',
+    "selenium.firefox": {
+      extends: "selenium_server",
       desiredCapabilities: {
-        browserName: 'firefox',
-        'moz:firefoxOptions': {
+        browserName: "firefox",
+        "moz:firefoxOptions": {
           args: [
             // '-headless',
             // '-verbose'
