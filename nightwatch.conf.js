@@ -75,6 +75,14 @@ module.exports = {
         },
       },
     },
+     "firefox:headless": {
+      desiredCapabilities: {
+        browserName: "firefox",
+        "moz:firefoxOptions": {
+          args: ["--headless", "--disable-gpu"],
+        },
+      },
+    },
     firefox: {
       desiredCapabilities: {
         browserName: "firefox",

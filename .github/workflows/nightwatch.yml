@@ -10,7 +10,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
+  build-chrome:
 
     runs-on: ubuntu-latest
 
@@ -39,4 +39,42 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: test-results-chrome-${{ matrix.node-version }}
+        path: tests_output/
+
+  build-firefox:
+
+    runs-on: ubuntu-latest
+
+    services:
+      selenium:
+       image: selenium/standalone-firefox:latest
+       options: "--shm-size 2g"
+       ports:
+          - 4444:4444
+
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    - run: npm ci
+
+    - name: Run lint
+      run: npm run lint
+
+    - name: Firefox tests
+      run: npm run test:firefox:headless
+    
+    - name: Upload Test Results
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: test-results-firefox-${{ matrix.node-version }}
         path: tests_output/

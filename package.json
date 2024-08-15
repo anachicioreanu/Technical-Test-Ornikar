@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "tsc && nightwatch",
-    "test:chrome:headless": "npx nightwatch --env chrome:headless",
+    "test:chrome:headless": "tsc && nightwatch --env chrome:headless",
+    "test:firefox:headless": "tsc && nightwatch --env firefox:headless",
     "lint": "eslint .",
     "prettier": "prettier --check .",
     "prettier:fix": "prettier --write ."
