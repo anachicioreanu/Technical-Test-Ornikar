@@ -83,6 +83,14 @@ module.exports = {
         },
       },
     },
+    "safari:headless": {
+      desiredCapabilities: {
+        browserName: "safari",
+        "safari.options": {
+          args: ["--headless"],
+        },
+      },
+    },
     firefox: {
       desiredCapabilities: {
         browserName: "firefox",
