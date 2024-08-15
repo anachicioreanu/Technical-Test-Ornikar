@@ -3,10 +3,10 @@ import { NightwatchTests } from "nightwatch";
 
 const API_URL = "https://insurance-api.ornikar.com";
 
-const insuranceAPITest: NightwatchTests = {
-  //Tags can be used for organizing tests
+const vehicleBrandseAPITest: NightwatchTests = {
+  //Tags used for organizing tests
   "@tags": ["api"],
-  "1. Test API endpoint for vehicles brands": async function (
+  "Test 1. Test API endpoint for vehicles brands": async function (
     browser: NightwatchTests,
   ) {
     const request = supertest(API_URL);
@@ -31,4 +31,4 @@ const insuranceAPITest: NightwatchTests = {
   },
 };
 
-export default insuranceAPITest;
+export default vehicleBrandseAPITest;

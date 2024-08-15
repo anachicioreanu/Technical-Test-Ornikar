@@ -1,41 +1,95 @@
 import supertest from "supertest";
-import { NightwatchTests } from "nightwatch";
+import { NightwatchTests, NightwatchAPI } from "nightwatch";
 
 const API_URL = "https://insurance-api.ornikar.com";
 
-const insuranceAPITest: NightwatchTests = {
-  //Tags can be used for organizing tests
+// Function to test the API endpoint
+async function testVehicleDetailsByPlate(
+  browser: NightwatchAPI,
+  plateNumber: string,
+  expectedStatus: number,
+  expectedMessage?: string,
+  expectedError?: string,
+  expectedBrand?: string,
+) {
+  const request = supertest(API_URL);
+
+  try {
+    const response = await request.get(
+      `/api/v2/vehicles/license-plate/${plateNumber}`,
+    );
+    browser.assert.strictEqual(
+      response.statusCode,
+      expectedStatus,
+      `Expected status code ${expectedStatus} for plate ${plateNumber}`,
+    );
+
+    const vehicleData = response.body;
+    browser.assert.equal(
+      vehicleData.message,
+      expectedMessage,
+      `Expected message for plate ${plateNumber}`,
+    );
+
+    if (expectedError) {
+      browser.assert.equal(
+        vehicleData.error,
+        expectedError,
+        `Expected error type ${expectedError} for plate ${plateNumber}`,
+      );
+    }
+
+    if (expectedBrand) {
+      browser.assert.equal(
+        vehicleData.specifications.brand,
+        expectedBrand,
+        `Expected brand ${expectedBrand} for plate ${plateNumber}`,
+      );
+    }
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error("API Request Error:", error.message);
+      throw new Error(`API request failed: ${error.message}`);
+    } else {
+      console.error("Unexpected error:", error);
+      throw new Error("An unexpected error occurred");
+    }
+  }
+}
+
+// Tests
+const licensePlateAPITest: NightwatchTests = {
+  // Tags used for organizing tests
   "@tags": ["api"],
-  "1. Test API endpoint retrieving vehicle details by plate number - invalid license entries":
-    async function (browser: NightwatchTests) {
-      const request = supertest(API_URL);
 
-      try {
-        const response = await request.get(
-          "/api/v2/vehicles/license-plate/ABC322",
-        );
-        browser.assert.strictEqual(
-          response.statusCode,
-          400,
-          "Invalid License Plate",
-        );
+  "Test 1: Validation of the license plate param": async function (
+    browser: NightwatchAPI,
+  ) {
+    await testVehicleDetailsByPlate(
+      browser,
+      "ABC322", // plateNumber
+      400, // expectedStatus
+      "The plate number 'ABC322' is incorrect.", // expectedMessage
+      "BadRequest", // expectedError
+    );
 
-        const vehicleData = response.body;
-        browser.assert.equal(
-          vehicleData.message,
-          `The plate number 'ABC322' is incorrect.`,
-          "Response message should match the expected value",
-        );
-        browser.assert.equal(
-          vehicleData.error,
-          "BadRequest",
-          "Response message should match the expected value",
-        );
-      } catch (error) {
-        console.error("API Request Error:", error);
-        throw new Error("API request failed: ${error.message}");
-      }
-    },
+    await testVehicleDetailsByPlate(
+      browser,
+      "", // plateNumber (empty)
+      404, // expectedStatus
+      "Cannot GET /api/v2/vehicles/license-plate/", // expectedMessage
+      "Not Found", // expectedError
+    );
+
+    await testVehicleDetailsByPlate(
+      browser,
+      "FY963CW", // plateNumber
+      200, // expectedStatus
+      undefined, // expectedMessage (can be empty if not needed)
+      undefined, // expectedError (not needed here)
+      "TOYOTA", // expectedBrand
+    );
+  },
 };
 
-export default insuranceAPITest;
+export default licensePlateAPITest;

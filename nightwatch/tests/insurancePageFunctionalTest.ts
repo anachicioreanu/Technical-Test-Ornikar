@@ -5,7 +5,7 @@ const insuranceTest: NightwatchTests = {
     browser.page.InsuranceAuto.InsurancePage().navigate();
     browser.window.maximize();
   },
-  "1. Landing on the Ornikar insurance auto page test": (
+  "Test 1. Landing on the Ornikar insurance auto page test": (
     browser: NightwatchAPI,
   ) => {
     const insurancePage = browser.page.InsuranceAuto.InsurancePage();
@@ -15,7 +15,7 @@ const insuranceTest: NightwatchTests = {
     );
   },
 
-  "2. Liscense plate input form validation test - invalid entries": (
+  "Test 2. Liscense plate input form validation test - invalid entries": (
     browser: NightwatchAPI,
   ) => {
     const insurancePage = browser.page.InsuranceAuto.InsurancePage();

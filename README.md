@@ -19,9 +19,7 @@ Follow these steps to set up and run the project:
 
 Clone the repository using the following command:
 
-
 `git clone <repository-url>`
-
 
 ## 2. Install Dependencies
 
@@ -39,30 +37,41 @@ You may need to adjust the settings according to your test environment, such as 
 ## 4. Run Tests
 
 To run the tests, use the following npm scripts:
+
 #
+
 Running the tests in chrome browser
 
 `npm test`
+
 #
+
 Running the tests in headless chrome browser
 
 `npm run test:headless`
 
 ## Scripts available
+
 Checking the quality of the code
 
 `npm run lint`
+
 #
+
 Checking for formatting errors:
 
 `npm run prettier`
+
 #
+
 Fixing formatting in all files:
 
 `npm run prettier:fix`
 
-
 ## Test Result Reports
+
 Test report files are automatically generated in the `tests_output` folder, which will be created when running the tests.
+
+![alt text](docs/report.png)
 
 Screenshots can be found in the `screens` folder.
