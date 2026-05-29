@@ -1,4 +1,4 @@
-# Test Assessment Ornikar
+# Test Assessment
 
 ## Overview
 
